@@ -27,6 +27,7 @@ tlmgr install           \
   biber                 \
   biblatex              \
   biblatex-gb7714-2015  \
+  bm                    \
   booktabs              \
   caption               \
   chngcntr              \
@@ -66,6 +67,7 @@ tlmgr install           \
   ulem                  \
   undolabl              \
   unicode-math          \
+  upgreek               \
   xcolor                \
   xecjk                 \
   xetex                 \
