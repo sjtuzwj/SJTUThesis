@@ -454,7 +454,7 @@
   本人授权\sjtu@name@school@zh 可以将本\sjtu@name@thesis@kind 的全部或部
   分内容编入有关数据库进行检索，可以采用影印、缩印或扫描等复制手段保存和
   汇编本\sjtu@name@thesis@kind 。}
-\sjtu@name@def{abstract@zh}{摘\hspace{\ccwd}要}
+\sjtu@name@def{abstract@zh}{摘要}
 \sjtu@name@def{abstract@en}{Abstract}
 \sjtu@name@def{keywords@zh}{关键词：}
 \sjtu@name@def{keywords@en}{Key words:~}
@@ -474,8 +474,8 @@
       nomenclature      = {主要符号对照表},
       summary           = {全文总结},
       bib               = {参考文献},
-      index             = {索\hspace{\ccwd}引},
-      acknowledgements  = {致\hspace{\ccwd}谢},
+      index             = {索引},
+      acknowledgements  = {谢辞},
       publications      = {攻读学位期间发表（或录用）的学术论文},
       achievements      = {攻读学位期间获得的科研成果},
       resume            = {个人简历},
@@ -844,12 +844,12 @@
     afterskip    = {\ifsjtu@type@graduate 3ex\else 4ex\fi},
   },
   section = {%
-    format       = \zihao{4}\bfseries\heiti,
+    format       = \zihao{4}\heiti,
     afterindent  = true,
     afterskip    = {1ex \@plus .2ex},
   },
   subsection = {%
-    format       = \zihao{-4}\bfseries\heiti,
+    format       = \zihao{-4}\normalfont,
     afterindent  = true,
     afterskip    = {1ex \@plus .2ex},
   },
@@ -857,7 +857,8 @@
     format       = \zihao{-4}\normalfont,
     afterindent  = true,
     afterskip    = {1ex \@plus .2ex},
-  },
+  }
+,
   paragraph/afterindent    = true,
   subparagraph/afterindent = true,
 }
@@ -948,7 +949,7 @@
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{2}
 \renewcommand\tableofcontents{%
-  \sjtu@chapter*{\contentsname}%
+  \sjtu@chapter*{\mdseries\contentsname}%
   \@starttoc{toc}%
 }
 \def\sjtu@listof#1{% #1: float type
@@ -1014,8 +1015,9 @@
   {\ifsjtu@set@float@fontsize\zihao{5}\else\normalsize\fi}
 \NewDocumentCommand{\SJTUsetfloatfontsize}{}{\sjtu@set@float@fontsizetrue}
 \NewDocumentCommand{\SJTUunsetfloatfontsize}{}{\sjtu@set@float@fontsizefalse}
-\DeclareCaptionFont{sjtu@caption@font}{\zihao{5}\kaishu}
+\DeclareCaptionFont{sjtu@caption@font}{\zihao{5}\normalfont\bfseries}
 \DeclareCaptionFont{sjtu@subcaption@font}{\zihao{5}\normalfont}
+\DeclareCaptionLabelSeparator{enskip}{\enskip}
 \DeclareCaptionLabelSeparator{enskip}{\enskip}
 \captionsetup{%
   format        = plain,
@@ -1138,13 +1140,14 @@
   \sjtu@chapter*{\sjtu@name@nomenclature}
 }{}
 \NewDocumentEnvironment{summary}{}{%
-  \sjtu@chapter{\sjtu@name@summary}
+    \sjtu@chapter*[\sjtu@name@summary]{\mdseries\sjtu@name@summary}
 }{}
 \NewDocumentEnvironment{acknowledgements}{}{%
   \Collect@Body\sjtu@save@env@body
 }{%
   \ifsjtu@review\relax\else
-    \sjtu@chapter{\sjtu@name@acknowledgements}
+    \sjtu@chapter*[\sjtu@name@acknowledgements]{\mdseries\sjtu@name@acknowledgements}
+        \addcontentsline{toc}{chapter}{\sjtu@name@acknowledgements}
     \sjtu@saved@env@body
   \fi
 }

@@ -1,7 +1,10 @@
 % !TeX encoding = UTF-8
 
 % 载入 SJTUThesis 模版
-\documentclass[type=bachelor]{sjtuthesis}
+\documentclass[type=bachelor,fontset=fandol,oneside]{sjtuthesis}
+% 封面楷体加粗
+\let\kaishu\relax
+\newCJKfontfamily\kaishu{KaiTi}[AutoFakeBold]
 % 选项
 %   type=[doctor|master|bachelor|course],     % 可选（默认：doctor），论文类型
 %   zihao=[-4|5],                             % 可选（研究生默认：-4，本科默认：5），正文字号大小
@@ -21,7 +24,7 @@
 % 论文标题页
 \maketitle
 
-% 原创性声明、版权授权页
+% 原创性声明、版权授权页，建议自己word再直接include pdf
 \originalitypage
 % 如果不需要在原创性声明页面显示论文名，请使用 \originalitypage*
 \copyrightpage[scans/copyright.pdf]
@@ -30,9 +33,14 @@
 \frontmatter
 
 % 摘要
+% 中文：标题规定粗体，摘要两字非粗体
+
 \input{contents/abstract}
 
 % 目录、插图索引、表格索引、算法索引
+% 目录规定非粗体
+% 索引没规定是否粗体
+
 \tableofcontents
 \listoffigures*
 \listoftables*
@@ -64,16 +72,33 @@
 % 后文部分无编号
 \backmatter
 
+% 取消章节标题粗体
+\ctexset{
+  chapter = {
+    format       = \zihao{3}\heiti\centering
+  }
+}
 % 参考文献
-\printbibliography[heading=bibintoc]
+% 规定非粗体
+\printbibliography[heading=bibintoc,title={参考文献}]
+
+% 恢复章节标题粗体
+\ctexset{
+  chapter = {
+    format       = \zihao{3}\bfseries\heiti\centering
+  }
+}
 
 % 用于盲审的论文需隐去致谢、发表论文、科研成果、简历
 
 % 致谢
+% 规定非粗体
+
 \input{contents/acknowledgements}
 
 % 发表论文、科研成果、简历
 % 盲审论文中，发表论文及科研成果等仅以第几作者注明即可，不要出现作者或他人姓名
+% 没规定是否粗体
 \input{contents/publications}
 \input{contents/achievements}
 \input{contents/resume}
